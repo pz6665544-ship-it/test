@@ -1,0 +1,35 @@
+# EditorConfig helps maintain consistent coding styles across the project
+# For more information, see https://editorconfig.org
+
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# C# files
+[*.cs]
+csharp_new_line_before_open_brace = all
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_call_parameter_list_commas = true
+csharp_space_after_comma = true
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_before_dot = false
+csharp_space_after_dot = false
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_indent_labels = flush_left
+
+# XAML files
+[*.xaml]
+indent_size = 4
+
+# Suppress MaterialDesign design-time XAML warnings
+# These are false positives - the properties work at runtime via MaterialDesignThemes
+dotnet_diagnostic.MC3072.severity = none
