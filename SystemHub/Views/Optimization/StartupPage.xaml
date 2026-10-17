@@ -1,0 +1,306 @@
+<Page x:Class="SystemHub.Views.Optimization.StartupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="Startup Optimization" Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <!-- Header -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ClockStart" Width="32" Height="32" 
+                                            Foreground="{DynamicResource AccentHueMidBrush}" Margin="0,0,10,0"/>
+                    <TextBlock Text="Startup Optimization" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Description -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Margin="16">
+                    <TextBlock Text="Startup Optimization Tool" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+                    <TextBlock Text="Manage startup programs and services to improve system boot time. Disable unnecessary programs that launch at startup to speed up your computer and reduce resource usage during boot." 
+                               FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Boot Time Analysis -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Current Boot Time -->
+                <Border Grid.Column="0" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Clock" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Current Boot Time" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="42.5s" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Average" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Last: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="45.2s" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Startup Programs -->
+                <Border Grid.Column="1" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PlayList" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Startup Programs" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="14" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Configured" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Enabled: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="9" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignSuccess}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Boot Impact -->
+                <Border Grid.Column="2" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Speedometer" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource AccentHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Boot Impact" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="High" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignError}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Optimization Needed" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="75" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource MaterialDesignError}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Quick Actions -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tune" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Quick Actions" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Optimize Startup" 
+                                Margin="0,0,8,0" Width="140" Click="OptimizeStartup_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="LightningBolt" Width="24" Height="24" 
+                                                                    Foreground="{TemplateBinding Foreground}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Optimize" FontSize="12" Foreground="{TemplateBinding Foreground}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Disable All" 
+                                Margin="0,0,8,0" Width="120" Click="DisableAll_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="PowerOff" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignError}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Disable All" FontSize="12" Foreground="{DynamicResource MaterialDesignError}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Enable Essential" 
+                                Margin="0,0,8,0" Width="140" Click="EnableEssential_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Power" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Essential" FontSize="12" Foreground="{DynamicResource MaterialDesignSuccess}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Analyze" 
+                                Margin="0,0,0,0" Width="100" Click="Analyze_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Magnify" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource SecondaryHueMidBrush}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Analyze" FontSize="12" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Startup Programs List -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewList" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Startup Programs" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="StartupDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}" 
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                  Click="ToggleEnabled_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            <DataGridTextColumn Header="Program" Binding="{Binding Name}" Width="*" FontSize="13"/>
+                            <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Command" Binding="{Binding Command}" Width="*" FontSize="12"/>
+                            
+                            <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="RunNow_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="Play" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignSuccess}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="Properties_Click" Margin="0,0,0,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="InformationOutline" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Boot Time Chart Placeholder -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Boot Time Analysis" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <!-- Chart placeholder - would use LiveCharts2 in full implementation -->
+                    <Border Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" 
+                            BorderBrush="{DynamicResource MaterialDesignDividers}" 
+                            BorderThickness="1" CornerRadius="4" Height="200">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="ChartLine" Width="48" Height="48" 
+                                                    Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,8"/>
+                            <TextBlock Text="Boot time history chart would be displayed here" FontSize="13" 
+                                       Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryButtonStyle}" Content="Back" Margin="0,0,8,0" Width="100" Click="Back_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
