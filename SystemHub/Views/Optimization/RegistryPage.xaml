@@ -1,0 +1,307 @@
+<Page x:Class="SystemHub.Views.Optimization.RegistryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="Registry Cleanup" Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <!-- Header -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Registry" Width="32" Height="32" 
+                                            Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,10,0"/>
+                    <TextBlock Text="Registry Cleanup" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Description -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Margin="16">
+                    <TextBlock Text="Registry Cleanup Tool" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+                    <TextBlock Text="Scan and clean the Windows Registry for invalid entries, orphaned keys, and unused data. Registry cleanup can improve system performance and fix certain application errors. Always create a backup before making changes." 
+                               FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                               TextWrapping="Wrap"/>
+                    <Border Background="{DynamicResource MaterialDesignErrorLight}" CornerRadius="4" Padding="12" Margin="0,12,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AlertCircle" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource MaterialDesignError}" Margin="0,0,8,0"/>
+                            <TextBlock Text="WARNING: Incorrect registry modifications can cause system instability. Always backup first." 
+                                       FontSize="12" Foreground="{DynamicResource MaterialDesignError}" 
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Backup Section -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Registry Backup" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Create Backup Now" 
+                                Margin="0,0,8,0" Width="150" Click="CreateBackup_Click"/>
+                        <TextBlock x:Name="BackupStatusText" Text="No backup created" FontSize="13" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Scan Options -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Scan Options" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Quick Scan" 
+                                Margin="0,0,8,0" Width="120" Click="QuickScan_Click"/>
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Deep Scan" 
+                                Margin="0,0,8,0" Width="120" Click="DeepScan_Click"/>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Custom Scan" 
+                                Margin="0,0,0,0" Width="120" Click="CustomScan_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Scan Progress -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20" Visibility="Collapsed" x:Name="ScanProgressBorder">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Scanning Registry..." FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+                    
+                    <ProgressBar Grid.Row="1" Value="0" Maximum="100" Height="8" CornerRadius="4" 
+                                 Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                 Background="{DynamicResource MaterialDesignDividers}" x:Name="ScanProgressBar"/>
+                    
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,8,0,0">
+                        <TextBlock x:Name="ScanStatusText" Text="Initializing registry scan..." FontSize="13" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                        <TextBlock x:Name="ScanItemsFoundText" Text="" FontSize="13" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" Margin="12,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Results -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20" Visibility="Collapsed" x:Name="ResultsBorder">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FileFind" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Scan Results" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TabControl Grid.Row="1" Margin="16">
+                        <TabItem Header="All Issues">
+                            <DataGrid x:Name="AllIssuesDataGrid" Style="{StaticResource DataGridStyle}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False" 
+                                      AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" 
+                                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                    <DataGridTemplateColumn Header="Severity" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border Background="{Binding SeverityColor}" CornerRadius="4" Padding="6,3">
+                                                    <TextBlock Text="{Binding Severity}" FontSize="11" Foreground="White" 
+                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="Auto" FontSize="12"/>
+                                    <DataGridTextColumn Header="Key" Binding="{Binding Key}" Width="*" FontSize="12"/>
+                                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="Auto" FontSize="12"/>
+                                    <DataGridTextColumn Header="Application" Binding="{Binding Application}" Width="Auto" FontSize="12"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Invalid References">
+                            <DataGrid x:Name="InvalidRefsDataGrid" Style="{StaticResource DataGridStyle}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False" 
+                                      AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" 
+                                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                    <DataGridTextColumn Header="Key" Binding="{Binding Key}" Width="*" FontSize="12"/>
+                                    <DataGridTextColumn Header="Referenced File" Binding="{Binding Reference}" Width="*" FontSize="12"/>
+                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" FontSize="12"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Orphaned Keys">
+                            <DataGrid x:Name="OrphanedKeysDataGrid" Style="{StaticResource DataGridStyle}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False" 
+                                      AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" 
+                                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                    <DataGridTextColumn Header="Key" Binding="{Binding Key}" Width="*" FontSize="12"/>
+                                    <DataGridTextColumn Header="Parent" Binding="{Binding Parent}" Width="Auto" FontSize="12"/>
+                                    <DataGridTextColumn Header="Uninstaller" Binding="{Binding Uninstaller}" Width="Auto" FontSize="12"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <TabItem Header="Unused Entries">
+                            <DataGrid x:Name="UnusedEntriesDataGrid" Style="{StaticResource DataGridStyle}" 
+                                      AutoGenerateColumns="False" 
+                                      CanUserAddRows="False" 
+                                      CanUserDeleteRows="False" 
+                                      AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="" Width="Auto">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" 
+                                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                    <DataGridTextColumn Header="Key" Binding="{Binding Key}" Width="*" FontSize="12"/>
+                                    <DataGridTextColumn Header="Last Accessed" Binding="{Binding LastAccessed}" Width="Auto" FontSize="12"/>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="Auto" FontSize="12"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Border>
+
+            <!-- Actions -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tune" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Fix Selected" 
+                                Margin="0,0,8,0" Width="120" Click="FixSelected_Click"/>
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Fix All" 
+                                Margin="0,0,8,0" Width="100" Click="FixAll_Click"/>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Select All" 
+                                Margin="0,0,8,0" Width="100" Click="SelectAll_Click"/>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Select None" 
+                                Margin="0,0,8,0" Width="100" Click="SelectNone_Click"/>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Export List" 
+                                Margin="0,0,0,0" Width="100" Click="ExportList_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Summary -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20" Visibility="Collapsed" x:Name="SummaryBorder">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Registry Cleanup Summary" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <StackPanel Margin="0,0,24,0">
+                            <TextBlock Text="Total Issues:" FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock x:Name="TotalIssuesText" Text="0" FontSize="18" FontWeight="Bold" 
+                                       Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,24,0">
+                            <TextBlock Text="High Severity:" FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock x:Name="HighSeverityText" Text="0" FontSize="18" FontWeight="Bold" 
+                                       Foreground="{DynamicResource MaterialDesignError}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,24,0">
+                            <TextBlock Text="Medium Severity:" FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock x:Name="MediumSeverityText" Text="0" FontSize="18" FontWeight="Bold" 
+                                       Foreground="{DynamicResource MaterialDesignWarning}"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Items Selected:" FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock x:Name="SelectedItemsText" Text="0" FontSize="18" FontWeight="Bold" 
+                                       Foreground="{DynamicResource AccentHueMidBrush}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryButtonStyle}" Content="Back" Margin="0,0,8,0" Width="100" Click="Back_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
