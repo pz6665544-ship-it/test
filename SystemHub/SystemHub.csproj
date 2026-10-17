@@ -11,6 +11,8 @@
     <Description>Comprehensive system utility integrating features from multiple popular tools</Description>
     <Version>1.0.0.0</Version>
     <FileAlignment>512</FileAlignment>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -34,6 +36,9 @@
   <ItemGroup>
     <Resource Include="Resources\**" />
     <EmbeddedResource Include="Styles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Include="Views\**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" />
     <Compile Include="Views\**\*.xaml.cs" DependentUpon="%(Filename)" />
   </ItemGroup>
