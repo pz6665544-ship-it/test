@@ -1,0 +1,376 @@
+<Page x:Class="SystemHub.Views.DownloadManager.DashboardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="Download Manager Dashboard" Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <!-- Header -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Download" Width="32" Height="32" 
+                                            Foreground="{DynamicResource MaterialDesignPrimary}" Margin="0,0,10,0"/>
+                    <TextBlock Text="Download Manager" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Summary Cards -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Active Downloads -->
+                <Border Grid.Column="0" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowDown" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Active Downloads" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="2" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="In Progress" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Speed: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="12.5 MB/s" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Completed -->
+                <Border Grid.Column="1" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CheckCircle" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Completed" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="45" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Finished" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Today: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="8" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Queue -->
+                <Border Grid.Column="2" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PlaylistPlay" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource AccentHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="In Queue" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="3" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource AccentHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Waiting" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Total Size: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="2.1 GB" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Total Downloaded -->
+                <Border Grid.Column="3" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Database" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource SecondaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Total Downloaded" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="85.7 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource SecondaryHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="All Time" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="65" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource SecondaryHueMidBrush}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Quick Actions -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tune" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Quick Actions" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="New Download" 
+                                Margin="0,0,8,0" Width="120" Click="NewDownload_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Plus" Width="24" Height="24" 
+                                                                    Foreground="{TemplateBinding Foreground}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="New" FontSize="12" Foreground="{TemplateBinding Foreground}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Pause All" 
+                                Margin="0,0,8,0" Width="100" Click="PauseAll_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Pause" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Pause" FontSize="12" Foreground="{DynamicResource MaterialDesignWarning}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Resume All" 
+                                Margin="0,0,8,0" Width="100" Click="ResumeAll_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Play" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Resume" FontSize="12" Foreground="{DynamicResource MaterialDesignSuccess}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Cancel All" 
+                                Margin="0,0,0,0" Width="100" Click="CancelAll_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Stop" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignError}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Cancel" FontSize="12" Foreground="{DynamicResource MaterialDesignError}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Active Downloads -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowDown" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Active Downloads" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="ActiveDownloadsDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Status" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{Binding StatusColor}" CornerRadius="4" Padding="6,3">
+                                            <materialDesign:PackIcon Kind="{Binding StatusIcon}" Width="16" Height="16" 
+                                                                    Foreground="White" 
+                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            <DataGridTextColumn Header="File" Binding="{Binding FileName}" Width="*" FontSize="13"/>
+                            <DataGridTextColumn Header="Size" Binding="{Binding Size}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Progress" Binding="{Binding Progress}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Speed" Binding="{Binding Speed}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Time Left" Binding="{Binding TimeLeft}" Width="Auto" FontSize="12"/>
+                            
+                            <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="PauseDownload_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="Pause" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignWarning}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="CancelDownload_Click" Margin="0,0,0,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="Stop" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignError}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Queue -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PlaylistPlay" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource AccentHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Download Queue" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="QueueDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding QueueNumber}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="File" Binding="{Binding FileName}" Width="*" FontSize="13"/>
+                            <DataGridTextColumn Header="Size" Binding="{Binding Size}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" FontSize="12"/>
+                            
+                            <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="MoveUp_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="ArrowUp" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="MoveDown_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="ArrowDown" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="RemoveFromQueue_Click" Margin="0,0,0,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="TrashCan" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignError}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryButtonStyle}" Content="Back" Margin="0,0,8,0" Width="100" Click="Back_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
