@@ -156,7 +156,7 @@
                                 Minimum="10" Maximum="90" Value="70" 
                                 TickFrequency="5" TickPlacement="Bottom" 
                                 ToolTip="Set the memory usage percentage at which optimization starts" Margin="0,0,16,0"/>
-                        <TextBlock Grid.Column="2" Text="{Binding ElementName=MemoryThresholdSlider, Path=Value, StringFormat={}{0}%}" 
+                        <TextBlock Grid.Column="2" Text="{Binding ElementName=MemoryThresholdSlider, Path=Value, StringFormat={}0%}" 
                                    FontSize="14" FontWeight="SemiBold" 
                                    Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
 

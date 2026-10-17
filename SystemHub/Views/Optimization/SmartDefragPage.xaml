@@ -166,7 +166,7 @@
                                 Minimum="5" Maximum="50" Value="20" 
                                 TickFrequency="5" TickPlacement="Bottom" 
                                 ToolTip="Set the fragmentation percentage at which auto-defrag starts" Margin="0,0,16,0"/>
-                        <TextBlock Grid.Column="2" Text="{Binding ElementName=FragmentationSlider, Path=Value, StringFormat={}{0}%}" 
+                        <TextBlock Grid.Column="2" Text="{Binding ElementName=FragmentationSlider, Path=Value, StringFormat={}0%}" 
                                    FontSize="14" FontWeight="SemiBold" 
                                    Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
 
