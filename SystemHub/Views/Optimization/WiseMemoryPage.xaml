@@ -1,0 +1,388 @@
+<Page x:Class="SystemHub.Views.Optimization.WiseMemoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="Wise Memory Optimizer" Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <!-- Header -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Memory" Width="32" Height="32" 
+                                            Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,10,0"/>
+                    <TextBlock Text="Wise Memory Optimizer" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Description -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Margin="16">
+                    <TextBlock Text="Wise Memory Optimizer" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+                    <TextBlock Text="Automatically optimize your system's memory usage using intelligent algorithms. Wise Memory Optimizer monitors your RAM and frees up memory when it falls below specified thresholds, improving system responsiveness and preventing slowdowns." 
+                               FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Memory Status Overview -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Physical Memory -->
+                <Border Grid.Column="0" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Chip" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Physical Memory" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="32 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Total" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="65" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Used Memory -->
+                <Border Grid.Column="1" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Memory" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Used Memory" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="20.8 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,8,0,4"/>
+                        <TextBlock Text="65%" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Working Set: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="18.5 GB" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Available Memory -->
+                <Border Grid.Column="2" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CheckCircle" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Available" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="11.2 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,8,0,4"/>
+                        <TextBlock Text="35%" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Free: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="11.2 GB" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Wise Memory Optimizer Controls -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tune" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Wise Memory Settings" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Auto-Optimize:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ToggleButton Grid.Column="1" x:Name="AutoOptimizeToggle" Content="Enabled" 
+                                      Style="{StaticResource PrimaryToggleButtonStyle}" 
+                                      IsChecked="True" Checked="AutoOptimize_Checked" Unchecked="AutoOptimize_Unchecked" Margin="0,0,16,0"/>
+
+                        <TextBlock Grid.Column="2" Text="Optimization Mode:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox Grid.Column="3" x:Name="OptimizationModeComboBox" 
+                                  Style="{StaticResource ComboBoxStyle}" 
+                                  SelectedIndex="0" SelectionChanged="OptimizationMode_Changed">
+                            <ComboBoxItem Content="Balanced"/>
+                            <ComboBoxItem Content="Aggressive"/>
+                            <ComboBoxItem Content="Conservative"/>
+                            <ComboBoxItem Content="Custom"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Memory Threshold:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Slider Grid.Column="1" x:Name="MemoryThresholdSlider" 
+                                Minimum="10" Maximum="90" Value="70" 
+                                TickFrequency="5" TickPlacement="Bottom" 
+                                ToolTip="Set the memory usage percentage at which optimization starts" Margin="0,0,16,0"/>
+                        <TextBlock Grid.Column="2" Text="{Binding ElementName=MemoryThresholdSlider, Path=Value, StringFormat={}{0}%}" 
+                                   FontSize="14" FontWeight="SemiBold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+
+                        <TextBlock Grid.Column="3" Text="Optimize Every:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox Grid.Column="4" x:Name="OptimizeIntervalComboBox" 
+                                  Style="{StaticResource ComboBoxStyle}" 
+                                  SelectedIndex="2" Width="100">
+                            <ComboBoxItem Content="1 min"/>
+                            <ComboBoxItem Content="5 min"/>
+                            <ComboBoxItem Content="10 min"/>
+                            <ComboBoxItem Content="30 min"/>
+                            <ComboBoxItem Content="1 hour"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Quick Actions -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="LightningBolt" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Quick Actions" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Optimize Now" 
+                                Margin="0,0,8,0" Width="140" Click="OptimizeNow_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="LightningBolt" Width="24" Height="24" 
+                                                                    Foreground="{TemplateBinding Foreground}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Optimize Now" FontSize="12" Foreground="{TemplateBinding Foreground}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Clear Working Set" 
+                                Margin="0,0,8,0" Width="140" Click="ClearWorkingSet_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Broom" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Clear WS" FontSize="12" Foreground="{DynamicResource MaterialDesignWarning}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Defragment Memory" 
+                                Margin="0,0,8,0" Width="140" Click="DefragmentMemory_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Defragment" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource SecondaryHueMidBrush}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Defrag" FontSize="12" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Purge Standby" 
+                                Margin="0,0,0,0" Width="120" Click="PurgeStandby_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="DeleteSweep" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Purge" FontSize="12" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Optimization History -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Optimization History" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="HistoryDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Action" Binding="{Binding Action}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Memory Freed" Binding="{Binding MemoryFreed}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Before" Binding="{Binding BeforeUsage}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="After" Binding="{Binding AfterUsage}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" FontSize="12"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Process List with Memory Details -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewList" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Top Memory Consumers" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="ProcessesDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              CanUserSortColumns="True" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Process" Binding="{Binding Name}" Width="*" FontSize="13"/>
+                            <DataGridTextColumn Header="PID" Binding="{Binding Pid}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Private WS" Binding="{Binding PrivateWorkingSet}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Shareable WS" Binding="{Binding ShareableWorkingSet}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Total WS" Binding="{Binding TotalWorkingSet}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Commit Size" Binding="{Binding CommitSize}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Paged Pool" Binding="{Binding PagedPool}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Non-Paged Pool" Binding="{Binding NonPagedPool}" Width="Auto" FontSize="12"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Memory Chart Placeholder -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Memory Usage Timeline" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <!-- Chart placeholder -->
+                    <Border Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" 
+                            BorderBrush="{DynamicResource MaterialDesignDividers}" 
+                            BorderThickness="1" CornerRadius="4" Height="200">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="ChartLine" Width="48" Height="48" 
+                                                    Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,8"/>
+                            <TextBlock Text="Memory usage history chart with Wise Memory Optimizer actions would be displayed here" FontSize="13" 
+                                       Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                                       HorizontalAlignment="Center" TextWrapping="Wrap" MaxWidth="400"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Status Bar -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" Margin="16">
+                    <materialDesign:PackIcon Kind="CheckCircle" Width="20" Height="20" 
+                                            Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,8,0"/>
+                    <TextBlock Text="Status: " FontSize="14" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="StatusText" Text="Auto-optimization active - Memory usage: 65%" FontSize="14" 
+                               Foreground="{DynamicResource MaterialDesignSuccess}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryButtonStyle}" Content="Back" Margin="0,0,8,0" Width="100" Click="Back_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

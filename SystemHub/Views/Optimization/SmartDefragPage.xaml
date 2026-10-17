@@ -1,0 +1,457 @@
+<Page x:Class="SystemHub.Views.Optimization.SmartDefragPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="Smart Defrag" Background="Transparent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="20">
+            <!-- Header -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Defragment" Width="32" Height="32" 
+                                            Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,10,0"/>
+                    <TextBlock Text="Smart Defrag" FontSize="20" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Description -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Margin="16">
+                    <TextBlock Text="Smart Defrag Tool" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+                    <TextBlock Text="Intelligently defragment your hard drives to improve performance and extend drive life. Smart Defrag uses advanced algorithms to analyze file fragmentation and optimize disk layout for faster access times. Unlike traditional defragmenters, it automatically defragments files based on usage patterns and frequency." 
+                               FontSize="13" Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Drive Overview -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- C: Drive -->
+                <Border Grid.Column="0" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Harddisk" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,0,8,0"/>
+                            <TextBlock Text="C: (System)" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="476 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignWarning}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Used: 238 GB" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="50" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource MaterialDesignWarning}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Fragmented: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="15%" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignError}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- D: Drive -->
+                <Border Grid.Column="1" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Harddisk" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,8,0"/>
+                            <TextBlock Text="D: (Data)" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="931 GB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Used: 450 GB" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="48" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource MaterialDesignSuccess}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Fragmented: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="8%" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignWarning}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- E: Drive -->
+                <Border Grid.Column="2" Style="{StaticResource StatCardStyle}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Harddisk" Width="24" Height="24" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="E: (Backup)" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                        </StackPanel>
+                        <TextBlock Text="1.8 TB" FontSize="28" FontWeight="Bold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,8,0,4"/>
+                        <TextBlock Text="Used: 850 GB" FontSize="12" 
+                                   Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,4"/>
+                        <ProgressBar Value="47" Maximum="100" Height="6" CornerRadius="3" 
+                                     Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                     Background="{DynamicResource MaterialDesignDividers}" Margin="0,8,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                            <TextBlock Text="Fragmented: " FontSize="11" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                            <TextBlock Text="5%" FontSize="11" FontWeight="SemiBold" Foreground="{DynamicResource MaterialDesignSuccess}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Smart Defrag Controls -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tune" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Smart Defrag Settings" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Auto-Defrag:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ToggleButton Grid.Column="1" x:Name="AutoDefragToggle" Content="Enabled" 
+                                      Style="{StaticResource PrimaryToggleButtonStyle}" 
+                                      IsChecked="True" Checked="AutoDefrag_Checked" Unchecked="AutoDefrag_Unchecked" Margin="0,0,16,0"/>
+
+                        <TextBlock Grid.Column="2" Text="Defrag Mode:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox Grid.Column="3" x:Name="DefragModeComboBox" 
+                                  Style="{StaticResource ComboBoxStyle}" 
+                                  SelectedIndex="0" SelectionChanged="DefragMode_Changed">
+                            <ComboBoxItem Content="Smart Defrag"/>
+                            <ComboBoxItem Content="Fast Defrag"/>
+                            <ComboBoxItem Content="Deep Defrag"/>
+                            <ComboBoxItem Content="Boot Time Defrag"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Fragmentation Threshold:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Slider Grid.Column="1" x:Name="FragmentationSlider" 
+                                Minimum="5" Maximum="50" Value="20" 
+                                TickFrequency="5" TickPlacement="Bottom" 
+                                ToolTip="Set the fragmentation percentage at which auto-defrag starts" Margin="0,0,16,0"/>
+                        <TextBlock Grid.Column="2" Text="{Binding ElementName=FragmentationSlider, Path=Value, StringFormat={}{0}%}" 
+                                   FontSize="14" FontWeight="SemiBold" 
+                                   Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+
+                        <TextBlock Grid.Column="3" Text="Defrag Every:" FontSize="14" 
+                                   Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox Grid.Column="4" x:Name="DefragIntervalComboBox" 
+                                  Style="{StaticResource ComboBoxStyle}" 
+                                  SelectedIndex="2" Width="100">
+                            <ComboBoxItem Content="Daily"/>
+                            <ComboBoxItem Content="Every 2 days"/>
+                            <ComboBoxItem Content="Weekly"/>
+                            <ComboBoxItem Content="Monthly"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Quick Actions -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="LightningBolt" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Quick Actions" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Analyze Drives" 
+                                Margin="0,0,8,0" Width="140" Click="AnalyzeDrives_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Magnify" Width="24" Height="24" 
+                                                                    Foreground="{TemplateBinding Foreground}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Analyze" FontSize="12" Foreground="{TemplateBinding Foreground}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Defrag Selected" 
+                                Margin="0,0,8,0" Width="140" Click="DefragSelected_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Defragment" Width="24" Height="24" 
+                                                                    Foreground="{TemplateBinding Foreground}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Defrag" FontSize="12" Foreground="{TemplateBinding Foreground}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Defrag All" 
+                                Margin="0,0,8,0" Width="120" Click="DefragAll_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Defragment" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource SecondaryHueMidBrush}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="All Drives" FontSize="12" Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Optimize" 
+                                Margin="0,0,0,0" Width="120" Click="Optimize_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="{TemplateBinding CornerRadius}">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="Tune" Width="24" Height="24" 
+                                                                    Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Optimize" FontSize="12" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Drive List -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewList" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Drive Status" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="DrivesDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" 
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
+                            <DataGridTextColumn Header="Drive" Binding="{Binding Letter}" Width="Auto" FontSize="13"/>
+                            <DataGridTextColumn Header="Label" Binding="{Binding Label}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Total Space" Binding="{Binding TotalSpace}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Used Space" Binding="{Binding UsedSpace}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Free Space" Binding="{Binding FreeSpace}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Fragmentation" Binding="{Binding Fragmentation}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Last Defrag" Binding="{Binding LastDefrag}" Width="Auto" FontSize="12"/>
+                            
+                            <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="AnalyzeDrive_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="Magnify" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="DefragDrive_Click" Margin="0,0,4,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="Defragment" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignSuccess}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Style="{StaticResource CardActionButtonStyle}" Tag="{Binding Id}" Click="DriveProperties_Click" Margin="0,0,0,0">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                                CornerRadius="4">
+                                                            <materialDesign:PackIcon Kind="InformationOutline" Width="14" Height="14" 
+                                                                                    Foreground="{DynamicResource MaterialDesignBody}" 
+                                                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Fragmentation Visualization Placeholder -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid Margin="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Fragmentation Visualization" FontSize="16" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" Margin="0,0,0,8"/>
+
+                    <Border Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" 
+                            BorderBrush="{DynamicResource MaterialDesignDividers}" 
+                            BorderThickness="1" CornerRadius="4" Height="200">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="ChartBar" Width="48" Height="48" 
+                                                    Foreground="{DynamicResource MaterialDesignBodyLight}" Margin="0,0,0,8"/>
+                            <TextBlock Text="Fragmentation visualization for selected drive would be displayed here" FontSize="13" 
+                                       Foreground="{DynamicResource MaterialDesignBodyLight}" 
+                                       HorizontalAlignment="Center" TextWrapping="Wrap" MaxWidth="400"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Defrag History -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Style="{StaticResource CardHeaderStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Width="20" Height="20" 
+                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,8,0"/>
+                            <TextBlock Text="Defrag History" FontSize="16" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <DataGrid x:Name="HistoryDataGrid" Grid.Row="1" Margin="16" 
+                              Style="{StaticResource DataGridStyle}" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False" 
+                              AlternatingRowBackground="{DynamicResource MaterialDesignHover}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Drive" Binding="{Binding Drive}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Action" Binding="{Binding Action}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Files Defragged" Binding="{Binding FilesDefragged}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Fragmentation Before" Binding="{Binding BeforeFragmentation}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Fragmentation After" Binding="{Binding AfterFragmentation}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="Auto" FontSize="12"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" FontSize="12"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Status Bar -->
+            <Border Style="{StaticResource CardWithShadowStyle}" Margin="0,0,0,20">
+                <StackPanel Orientation="Horizontal" Margin="16">
+                    <materialDesign:PackIcon Kind="CheckCircle" Width="20" Height="20" 
+                                            Foreground="{DynamicResource MaterialDesignSuccess}" Margin="0,0,8,0"/>
+                    <TextBlock Text="Status: " FontSize="14" FontWeight="SemiBold" 
+                               Foreground="{DynamicResource MaterialDesignBody}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="StatusText" Text="Ready - Auto-defrag enabled" FontSize="14" 
+                               Foreground="{DynamicResource MaterialDesignSuccess}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource SecondaryButtonStyle}" Content="Back" Margin="0,0,8,0" Width="100" Click="Back_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
