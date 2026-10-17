@@ -1,0 +1,482 @@
+<Window x:Class="SystemHub.Views.Dashboard.MainDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SystemHub.Views.Dashboard"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:systemInfo="clr-namespace:SystemHub.Views.SystemInfo"
+        xmlns:diskTools="clr-namespace:SystemHub.Views.DiskTools"
+        xmlns:fileManager="clr-namespace:SystemHub.Views.FileManager"
+        xmlns:uninstaller="clr-namespace:SystemHub.Views.Uninstaller"
+        xmlns:downloadManager="clr-namespace:SystemHub.Views.DownloadManager"
+        xmlns:optimization="clr-namespace:SystemHub.Views.Optimization"
+        xmlns:networkTools="clr-namespace:SystemHub.Views.NetworkTools"
+        xmlns:multimedia="clr-namespace:SystemHub.Views.Multimedia"
+        xmlns:processManager="clr-namespace:SystemHub.Views.ProcessManager"
+        xmlns:dataRecovery="clr-namespace:SystemHub.Views.DataRecovery"
+        xmlns:utilities="clr-namespace:SystemHub.Views.Utilities"
+        xmlns:settings="clr-namespace:SystemHub.Views.Settings"
+        mc:Ignorable="d"
+        Title="SystemHub - All-in-One System Utility" Height="768" Width="1280" WindowState="Maximized"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/AppStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Main Container -->
+        <Border Background="{DynamicResource MaterialDesignPaper}" CornerRadius="12" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="250" MaxWidth="300"/>
+                    <ColumnDefinition Width="*" MinWidth="600"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Sidebar Navigation -->
+                <Border Grid.Column="0" Background="{DynamicResource MaterialDesignCardBackground}" BorderBrush="{DynamicResource MaterialDesignDividers}" BorderThickness="0,0,1,0">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="0" Padding="10,10,0,10">
+                            <!-- Logo/Title -->
+                            <Border Margin="0,0,0,20" Padding="15,10">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <materialDesign:PackIcon Kind="CogOutline" Width="32" Height="32" 
+                                                            Foreground="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,10,0"/>
+                                    <TextBlock Text="SystemHub" FontSize="20" FontWeight="Bold"
+                                               Foreground="{DynamicResource PrimaryHueMidBrush}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Navigation Categories -->
+                            
+                            <!-- Dashboard -->
+                            <Expander Header="Dashboard" IsExpanded="True" Margin="0,0,0,5" 
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Overview" Tag="Dashboard_Overview" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="System Health" Tag="Dashboard_SystemHealth" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- System Information -->
+                            <Expander Header="System Information" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="System Overview" Tag="SystemInfo_Overview" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="CPU" Tag="SystemInfo_CPU" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Memory" Tag="SystemInfo_Memory" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Motherboard" Tag="SystemInfo_Motherboard" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="GPU" Tag="SystemInfo_GPU" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Storage" Tag="SystemInfo_Storage" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Network" Tag="SystemInfo_Network" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="OS Info" Tag="SystemInfo_OS" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Sensors" Tag="SystemInfo_Sensors" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Disk & Storage Tools -->
+                            <Expander Header="Disk & Storage" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Disk Overview" Tag="DiskTools_Overview" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Disk Health" Tag="DiskTools_Health" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Disk Usage" Tag="DiskTools_Usage" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Partition Manager" Tag="DiskTools_Partitions" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Benchmark" Tag="DiskTools_Benchmark" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Disk Cleanup" Tag="DiskTools_Cleanup" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Defragmentation" Tag="DiskTools_Defrag" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="File Explorer" Tag="DiskTools_FileExplorer" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="WizTree View" Tag="DiskTools_WizTree" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="TreeSize View" Tag="DiskTools_TreeSize" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="SpaceSniffer" Tag="DiskTools_SpaceSniffer" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- File Management -->
+                            <Expander Header="File Management" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="File Explorer" Tag="FileManager_Explorer" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="File Search" Tag="FileManager_Search" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Duplicate Finder" Tag="FileManager_Duplicates" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Large Files" Tag="FileManager_LargeFiles" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="File Comparison" Tag="FileManager_Comparison" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Batch Rename" Tag="FileManager_Rename" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="File Split/Join" Tag="FileManager_SplitJoin" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="7-Zip Archive" Tag="FileManager_Archive" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Uninstaller -->
+                            <Expander Header="Uninstaller" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Installed Programs" Tag="Uninstaller_Programs" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Bulk Uninstall" Tag="Uninstaller_Bulk" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Forced Uninstall" Tag="Uninstaller_Forced" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Leftovers Cleanup" Tag="Uninstaller_Leftovers" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Startup Programs" Tag="Uninstaller_Startup" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="BCUninstaller" Tag="Uninstaller_BCU" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Revo Uninstaller" Tag="Uninstaller_Revo" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Geek Uninstaller" Tag="Uninstaller_Geek" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Download Manager -->
+                            <Expander Header="Download Manager" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Download Dashboard" Tag="DownloadManager_Dashboard" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="New Download" Tag="DownloadManager_New" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Download Queue" Tag="DownloadManager_Queue" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Completed Downloads" Tag="DownloadManager_Completed" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Download Settings" Tag="DownloadManager_Settings" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="FDM Style" Tag="DownloadManager_FDM" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="IDM Style" Tag="DownloadManager_IDM" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- System Optimization -->
+                            <Expander Header="System Optimization" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="System Cleanup" Tag="Optimization_Cleanup" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Registry Cleanup" Tag="Optimization_Registry" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Junk Files" Tag="Optimization_Junk" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Memory Optimizer" Tag="Optimization_Memory" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Startup Optimizer" Tag="Optimization_Startup" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Process Manager" Tag="Optimization_Processes" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Services Manager" Tag="Optimization_Services" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Wise Memory" Tag="Optimization_WiseMemory" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Smart Defrag" Tag="Optimization_SmartDefrag" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Network Tools -->
+                            <Expander Header="Network Tools" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Network Overview" Tag="NetworkTools_Overview" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Port Scanner" Tag="NetworkTools_PortScanner" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Ping Tool" Tag="NetworkTools_Ping" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Traceroute" Tag="NetworkTools_Traceroute" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Bandwidth Monitor" Tag="NetworkTools_Bandwidth" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Wireshark" Tag="NetworkTools_Wireshark" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="NetLimiter" Tag="NetworkTools_NetLimiter" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="iperf3" Tag="NetworkTools_iperf3" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="AnyDesk" Tag="NetworkTools_AnyDesk" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="KDE Connect" Tag="NetworkTools_KDEConnect" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Multimedia -->
+                            <Expander Header="Multimedia" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Media Player" Tag="Multimedia_Player" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Audio Recorder" Tag="Multimedia_AudioRecorder" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Screen Recorder" Tag="Multimedia_ScreenRecorder" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Screenshot" Tag="Multimedia_Screenshot" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="ShareX" Tag="Multimedia_ShareX" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Audacity" Tag="Multimedia_Audacity" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="VLC Player" Tag="Multimedia_VLC" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Process Management -->
+                            <Expander Header="Process Management" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="Process List" Tag="ProcessManager_List" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Process Explorer" Tag="ProcessManager_Explorer" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Process Monitor" Tag="ProcessManager_Monitor" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="RAMMap" Tag="ProcessManager_RAMMap" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Task Manager" Tag="ProcessManager_TaskManager" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Data Recovery -->
+                            <Expander Header="Data Recovery" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="File Recovery" Tag="DataRecovery_File" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Partition Recovery" Tag="DataRecovery_Partition" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Recuva" Tag="DataRecovery_Recuva" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="TestDisk" Tag="DataRecovery_TestDisk" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="PhotoRec" Tag="DataRecovery_PhotoRec" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="DMDE" Tag="DataRecovery_DMDE" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="R-Studio" Tag="DataRecovery_RStudio" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="DiskGenius" Tag="DataRecovery_DiskGenius" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Utilities -->
+                            <Expander Header="Utilities" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="PowerToys" Tag="Utilities_PowerToys" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Sysinternals" Tag="Utilities_Sysinternals" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Clipboard Manager" Tag="Utilities_Clipboard" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="AutoHotkey" Tag="Utilities_AutoHotkey" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Wallpaper Engine" Tag="Utilities_Wallpaper" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="DisplayFusion" Tag="Utilities_DisplayFusion" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Twinkle Tray" Tag="Utilities_TwinkleTray" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="TranslucentTB" Tag="Utilities_TranslucentTB" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Lively Wallpaper" Tag="Utilities_LivelyWallpaper" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="WinGet" Tag="Utilities_WinGet" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="UniGetUI" Tag="Utilities_UniGetUI" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Driver Booster" Tag="Utilities_DriverBooster" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Microsoft PC Manager" Tag="Utilities_PCManager" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- Settings -->
+                            <Expander Header="Settings" IsExpanded="False" Margin="0,0,0,5"
+                                      Style="{DynamicResource NavigationExpanderStyle}">
+                                <StackPanel>
+                                    <Button Content="General Settings" Tag="Settings_General" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Appearance" Tag="Settings_Appearance" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Notifications" Tag="Settings_Notifications" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="Updates" Tag="Settings_Updates" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                    <Button Content="About" Tag="Settings_About" 
+                                            Style="{DynamicResource NavigationButtonStyle}"
+                                            Click="NavigationButton_Click"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <!-- System Tray Icon -->
+                            <Border Margin="10,20,0,0" Padding="5">
+                                <Button Content="Minimize to Tray" Tag="System_Tray" 
+                                        Style="{DynamicResource NavigationButtonStyle}"
+                                        Click="NavigationButton_Click"/>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- Main Content Area -->
+                <Grid Grid.Column="1" Margin="0">
+                    <Frame x:Name="MainFrame" Source="Dashboard/OverviewPage.xaml" 
+                           NavigationUIVisibility="Hidden" BorderThickness="0"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Window Controls -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+            <Button Style="{DynamicResource WindowControlButtonStyle}" Content="_" 
+                    Width="40" Height="30" Click="Minimize_Click"/>
+            <Button Style="{DynamicResource WindowControlButtonStyle}" Content="[]" 
+                    Width="40" Height="30" Click="Maximize_Click"/>
+            <Button Style="{DynamicResource WindowControlButtonStyle}" Content="X" 
+                    Width="40" Height="30" Click="Close_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
